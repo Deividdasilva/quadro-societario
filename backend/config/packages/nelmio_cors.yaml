@@ -1,0 +1,13 @@
+# config/packages/nelmio_cors.yaml
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: ['*'] # Aqui você pode especificar a origem do Angular, por exemplo: 'http://localhost:4200'
+        allow_headers: ['Content-Type', 'Authorization']
+        allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'DELETE']
+        max_age: 3600
+    paths:
+        '^/': # Configurações para todas as rotas
+            allow_origin: ['*']
+            allow_headers: ['Content-Type', 'Authorization']
+            allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'DELETE']

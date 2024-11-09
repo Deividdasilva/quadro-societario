@@ -1,0 +1,52 @@
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmação de Exclusão</h4>
+  </div>
+  <div class="modal-body">
+    Tem certeza que deseja excluir a empresa "{{ empresaToDelete?.nome }}" com CNPJ "{{ empresaToDelete?.cnpj }}"?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirmDeleteAction()">Confirmar</button>
+  </div>
+</ng-template>
+
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="card" style="width: 70%;">
+    <div class="card-body">
+      <h2 class="display-4 text-center">Empresas</h2>
+
+      <div class="text-end mb-4">
+        <button class="btn btn-success" (click)="addEmpresa()">Adicionar Empresa</button>
+      </div>
+
+      <!-- Campo de pesquisa acima e botão de adicionar à direita -->
+      <div class="mb-4">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar Empresa" class="form-control" (input)="filterEmpresas()" style="width: 40%;">
+      </div>
+
+      <!-- Tabela de empresas -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empresa of filteredEmpresas">
+            <td>{{ empresa.id }}</td>
+            <td>{{ empresa.nome }}</td>
+            <td>{{ empresa.cnpj }}</td>
+            <td>
+              <button class="btn btn-primary me-2" (click)="editEmpresa(empresa)">Editar</button>
+              <button class="btn btn-danger" (click)="deleteEmpresa(empresa)">Apagar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

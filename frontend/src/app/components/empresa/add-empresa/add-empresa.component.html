@@ -1,0 +1,37 @@
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="card" style="width: 70%;">
+    <div class="card-header text-center">
+      <h2 class="card-title">Adicionar Empresa</h2>
+    </div>
+    <div class="card-body">
+      <form (submit)="addEmpresa()" class="needs-validation" novalidate [class.was-validated]="form.valid" #form="ngForm">
+
+        <!-- Campo para o Nome da Empresa -->
+        <div class="form-group">
+          <label for="name">Nome da Empresa</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="newEmpresa.nome" name="name" required #name="ngModel">
+          <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+            Por favor, insira o nome da empresa.
+          </div>
+        </div>
+
+        <!-- Campo para o CNPJ da Empresa -->
+        <div class="form-group">
+          <label for="cnpj">CNPJ da Empresa</label>
+          <input type="text" class="form-control" id="cnpj" [(ngModel)]="newEmpresa.cnpj" name="cnpj" required #cnpj="ngModel">
+          <div class="invalid-feedback" *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched)">
+            Por favor, insira o CNPJ da empresa.
+          </div>
+        </div>
+
+        <br>
+
+        <!-- Botões de Voltar e Adicionar -->
+        <div class="d-flex justify-content-start">
+          <button type="button" class="btn btn-secondary me-2" (click)="voltar()">Voltar</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Adicionar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

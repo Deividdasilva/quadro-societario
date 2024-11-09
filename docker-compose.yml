@@ -9,11 +9,13 @@ services:
       - SYMFONY_ENV=dev
       - DATABASE_URL=postgresql://symfony_user:symfony_pass@db:5432/symfony_db
     volumes:
-      - ./backend:/app
+      - ./backend:/var/www/html
     ports:
       - "8000:8000"
     depends_on:
       - db
+    command: >
+      sh -c "php bin/console doctrine:migrations:migrate --no-interaction && php -S 0.0.0.0:8000 -t public"
 
   db:
     image: postgres:13
@@ -28,15 +30,15 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   frontend:
-    build:
-      context: ./frontend
-    container_name: angular-frontend
+    image: node:18.19.0
+    volumes:
+      - './frontend/:/app'
     ports:
       - "4200:4200"
-    volumes:
-      - ./frontend:/usr/src/app
-    working_dir: /usr/src/app
-    command: sh -c "npm install && ng serve --host 0.0.0.0"
+    depends_on:
+      - backend
+    command: >
+      sh -c "cd /app && npm install -g @angular/cli && npm install && ng serve --host 0.0.0.0 --port 4200"
 
 volumes:
   postgres-data:

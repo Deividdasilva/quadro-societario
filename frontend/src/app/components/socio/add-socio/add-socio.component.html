@@ -1,0 +1,42 @@
+<div class="container d-flex justify-content-center mt-4">
+  <div class="card" style="width: 70%;">
+    <div class="card-header">
+      <h2 class="card-title">Adicionar Sócio</h2>
+    </div>
+    <div class="card-body">
+      <form (submit)="addSocio()" class="needs-validation" novalidate [class.was-validated]="form.valid" #form="ngForm">
+        <div class="form-group">
+          <label for="nome">Nome do Sócio</label>
+          <input type="text" class="form-control" id="nome" [(ngModel)]="newSocio.nome" name="nome" required #nome="ngModel">
+          <div class="invalid-feedback" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+            Por favor, insira o nome do sócio.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="text" class="form-control" id="cpf" [(ngModel)]="newSocio.cpf" name="cpf" required #cpf="ngModel">
+          <div class="invalid-feedback" *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
+            Por favor, insira o CPF do sócio.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Empresa</label>
+          <select class="form-control" id="empresa" [(ngModel)]="newSocio.empresa_id" name="empresa" required #empresa="ngModel">
+            <option *ngFor="let empresa of empresas" [value]="empresa.id">{{ empresa.nome }}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="empresa.invalid && (empresa.dirty || empresa.touched)">
+            Por favor, selecione a empresa.
+          </div>
+        </div>
+
+        <br>
+        <div class="d-flex">
+          <button type="submit" class="btn btn-primary me-2" [disabled]="form.invalid">Adicionar</button>
+          <button type="button" class="btn btn-secondary" (click)="goBack()">Voltar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

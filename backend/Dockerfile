@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Definir o diretório de trabalho
-WORKDIR /app
+WORKDIR /var/www/html
 
 # Criar o projeto Symfony na pasta /app, caso não exista
 RUN composer create-project symfony/skeleton .

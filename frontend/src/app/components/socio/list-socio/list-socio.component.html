@@ -1,0 +1,55 @@
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmação de Exclusão</h4>
+  </div>
+  <div class="modal-body">
+    Tem certeza que deseja excluir o sócio "{{ socioToDelete?.nome }}" com CPF "{{ socioToDelete?.cpf }}"?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirmDeleteAction()">Confirmar</button>
+  </div>
+</ng-template>
+
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="card" style="width: 70%;">
+    <div class="card-body">
+      <h1 class="display-4 text-center">Sócios</h1>
+
+      <div class="text-end mb-4">
+        <button class="btn btn-success" (click)="addSocio()">Adicionar Sócio</button>
+      </div>
+
+      <!-- Campo de pesquisa e botão de adicionar -->
+      <div class="mb-4">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar Sócio" class="form-control" (input)="filterSocios()" style="width: 40%;">
+      </div>
+
+
+      <!-- Tabela de sócios -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Empresa</th> <!-- Nova coluna para a empresa -->
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let socio of filteredSocios">
+            <td>{{ socio.id }}</td>
+            <td>{{ socio.nome }}</td>
+            <td>{{ socio.cpf }}</td>
+            <td>{{ socio.empresa }}</td> <!-- Exibe o nome da empresa -->
+            <td>
+              <button class="btn btn-primary me-2" (click)="editSocio(socio)">Editar</button>
+              <button class="btn btn-danger" (click)="deleteSocio(socio)">Apagar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

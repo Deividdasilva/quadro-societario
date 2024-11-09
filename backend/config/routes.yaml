@@ -1,0 +1,53 @@
+# config/routes.yaml
+
+# Rotas de Empresa
+empresa_index:
+    path: /empresas
+    controller: App\Controller\EmpresaController::index
+    methods: GET
+
+empresa_new:
+    path: /empresas/new
+    controller: App\Controller\EmpresaController::create
+    methods: POST
+
+empresa_show:
+    path: /empresas/{id}
+    controller: App\Controller\EmpresaController::show
+    methods: GET
+
+empresa_edit:
+    path: /empresas/{id}
+    controller: App\Controller\EmpresaController::update
+    methods: PUT
+
+empresa_delete:
+    path: /empresas/{id}
+    controller: App\Controller\EmpresaController::delete
+    methods: DELETE
+
+# Rotas de Socio
+socio_index:
+    path: /socios
+    controller: App\Controller\SocioController::index
+    methods: GET
+
+socio_new:
+    path: /socios/new
+    controller: App\Controller\SocioController::create
+    methods: POST
+
+socio_show:
+    path: /socios/{id}
+    controller: App\Controller\SocioController::show
+    methods: GET
+
+socio_edit:
+    path: /socios/{id}
+    controller: App\Controller\SocioController::update
+    methods: PUT
+
+socio_delete:
+    path: /socios/{id}
+    controller: App\Controller\SocioController::delete
+    methods: DELETE

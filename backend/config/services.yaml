@@ -1,0 +1,21 @@
+parameters:
+
+services:
+    # Configuração padrão para serviços neste arquivo
+    _defaults:
+        autowire: true      # Injeta automaticamente as dependências nos seus serviços.
+        autoconfigure: true # Registra automaticamente os serviços como comandos, assinantes de eventos, etc.
+
+    # Torna as classes em src/ disponíveis para serem usadas como serviços,
+    # criando um serviço por classe com o ID sendo o nome completo da classe.
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Kernel.php'
+
+    # Registro explícito do repositório EmpresaRepository
+    App\Repository\EmpresaRepository:
+        arguments:
+            $registry: '@doctrine'
+        public: true  # Isso garante que o serviço seja acessível para depuração e injeção

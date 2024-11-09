@@ -1,0 +1,5 @@
+# config/packages/framework.yaml
+framework:
+    router:
+        resource: '%kernel.project_dir%/config/routes.yaml'
+        type: yaml
